@@ -1,19 +1,20 @@
 import React from "react";
 import "./header.css";
+import { Input } from "../Input/Input";
 
-export const Header = () => {
+export const Header = ({ value, inputHandler }) => {
   return (
     <header>
       <div>
-        <div class="container">
-          <div class="header__wraper">
-            <div class="header__background">
+        <div className="container">
+          <div className="header__wraper">
+            <div className="header__background">
               <a href="">
-                <h1 class="title">Emoji Finder</h1>
-                <h2 class="subtitle">Find emoji by keywords</h2>
+                <h1 className="title">Emoji Finder</h1>
+                <h2 className="subtitle">Find emoji by keywords</h2>
               </a>
             </div>
-            <input type="text" class="input" placeholder="Input KeyWords" />
+            <Input value={value} inputHandler={inputHandler} />
           </div>
         </div>
       </div>

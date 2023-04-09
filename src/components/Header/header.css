@@ -35,31 +35,7 @@
   margin: 0 auto;
 }
 
-.input {
-  transition: 0.6s;
-  width: 240px;
-  height: 64px;
-  background-color: #fff;
-  position: absolute;
-  top: 263px;
-  border: 1px solid #ced4da;
-  border-radius: 4px;
-  font-size: 24px;
-  color: #1d0560;
-  padding-left: 32px;
-}
 
-.input:focus {
-  transition: 0.6s;
-  border: 1px solid #200560;
-  outline: none;
-  width: 820px;
-}
-
-.input::placeholder {
-  color: #abb5be;
-  font-size: 24px;
-}
 
 @media (max-width: 1000px) {
   .input:focus {
