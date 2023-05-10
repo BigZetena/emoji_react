@@ -1,27 +1,17 @@
 import React from "react";
 import "./main.css";
-import { Card } from "../Card/Card";
 
-export const Main = ({ value, data }) => {
+export const Main = ({loading, currentCard, }) => {
+
+  if (loading) {
+      return <h2 className="main__loading">Loading...</h2>
+  }
+
   return (
     <main>
-      <div className="main__container">
+      <div className="main__container" id="cards">
         <div className="main__wrapper">
-          {data
-            .filter(
-              (el) =>
-                el.title
-                  .toLowerCase()
-                  .trim()
-                  .includes(value.toLowerCase().trim()) ||
-                el.keywords
-                  .toLowerCase()
-                  .trim()
-                  .includes(value.toLowerCase().trim())
-            )
-            .map((el) => (
-              <Card key={el.title} {...el} />
-            ))}
+          {currentCard}
         </div>
       </div>
     </main>

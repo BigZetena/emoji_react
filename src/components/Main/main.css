@@ -13,6 +13,17 @@
   padding: 50px 0 50px 0;
 }
 
+.main__loading
+{
+  font-weight: 400;
+  font-size: 21px;
+  line-height: 36px;
+  color: #d4cffc;
+  text-align: center;
+  width: max-content;
+  margin: 0 auto;
+}
+
 @media (max-width: 1000px) {
   .main__wrapper {
     grid-template-columns: repeat(2, 1fr);
