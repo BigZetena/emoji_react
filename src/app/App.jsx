@@ -38,6 +38,8 @@ function App() {
     setCurrentPage(1);
   };
 
+  const listHandler = (evt) => {
+    setCardsPerPage(evt.target.value)};
 
 
   function getUniqData(arr) {
@@ -80,7 +82,7 @@ function App() {
     <div className="App">
       <Header value={value} inputHandler={inputHandler} />
       <Main loading={loading} currentCard = {currentCard}  />
-      <Footer cardsPerPage = {cardsPerPage} totalCards = {currentData.length} switchPage = {switchPage} currentPage = {currentPage} />
+      <Footer cardsPerPage = {cardsPerPage} totalCards = {currentData.length} switchPage = {switchPage} currentPage = {currentPage}  listHandler = {listHandler} />
     </div>)
 }
 

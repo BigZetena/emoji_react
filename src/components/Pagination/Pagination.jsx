@@ -1,9 +1,10 @@
 import React, {useEffect} from 'react';
 import "./pagination.css"
+import PaginationCardsPerPage from "../PaginationCardsPerPage/PaginationCardsPerPage";
 
 
 
-const Pagination = ({cardsPerPage, totalCards, switchPage, currentPage}) => {
+const Pagination = ({cardsPerPage, totalCards, switchPage, currentPage,  listHandler}) => {
     const pageNumbers = []
 
 
@@ -34,7 +35,7 @@ const Pagination = ({cardsPerPage, totalCards, switchPage, currentPage}) => {
 
     if(pageNumbers.length <= 6) {
     return (
-        <div>
+        <div className="pagination__wrapper">
             <ul className="pagination">
                 <li className="pagination__item">
                     <a href="#cards" className="pagination__link" onClick={() =>  {switchPage(1); changeButtonActive(1)}}>
@@ -55,6 +56,7 @@ const Pagination = ({cardsPerPage, totalCards, switchPage, currentPage}) => {
                     </a>
                 </li>
             </ul>
+            <PaginationCardsPerPage listHandler={listHandler}/>
         </div>
     );}
 
@@ -82,7 +84,7 @@ const Pagination = ({cardsPerPage, totalCards, switchPage, currentPage}) => {
     }
 
     return (
-        <div>
+        <div className="pagination__wrapper">
             <ul className="pagination">
                 <li className="pagination__item">
                     <a href="#cards" className="pagination__link" onClick={() =>  {switchPage(1); }}>
@@ -116,6 +118,7 @@ const Pagination = ({cardsPerPage, totalCards, switchPage, currentPage}) => {
                     </a>
                 </li>
             </ul>
+            <PaginationCardsPerPage listHandler={listHandler}/>
         </div>
     )
 
