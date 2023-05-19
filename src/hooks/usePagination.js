@@ -9,6 +9,10 @@ export default function usePagination(currentData, cardsPerPage) {
         switchPage(1)
     }, [currentData])
 
+    useEffect(() => {
+        switchPage(1)
+    }, [cardsPerPage])
+
     const switchPage = (pageNumber) => {
         setCurrentPage(pageNumber)
     }
