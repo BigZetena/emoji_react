@@ -12,8 +12,11 @@ function App() {
   const [data, setData] = useState([]); //массив карточек
   const [uniqData, setUniqData] = useState([]); //масив уникальных карточек
   const [cardsPerPage, setCardsPerPage] = useState(12); //кол-во краточек выводимых на одной страничке
-  const [currentData, setCurrentData] = useState([uniqData])  //массив карточек выводимых на текущей страничке
+  const [currentData, setCurrentData] = useState([])  //массив карточек выводимых на текущей страничке
   const [loading, setLoading] = useState(false); //состояние на момент подгрузки данных
+
+
+
 
   //Делаем запрос на массив данных
   useEffect(() => {
@@ -42,6 +45,11 @@ function App() {
   //из инпута поиска
   const searchResult = useInput("")
 
+  //первичный актуальный массив карточек на страничке
+  useEffect(() => {
+    getCurrentData(uniqData)
+  }, [uniqData])
+
   //обновляем актуальный массив выводимых на страничке карточек, при измененнии данных поисковой строки
   useEffect(() => {
     getCurrentData(uniqData)
@@ -61,7 +69,6 @@ function App() {
 
   //функция фильтрации карточек по данным из поисковой строки
   function  getCurrentData(arr) {
-
     return setCurrentData(arr
         .filter(
             (el) =>

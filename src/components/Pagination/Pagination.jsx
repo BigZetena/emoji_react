@@ -1,4 +1,4 @@
-import React,from 'react';
+import React from 'react';
 import "./pagination.css"
 import PaginationCardsPerPage from "../PaginationCardsPerPage/PaginationCardsPerPage";
 import clsx from "clsx";

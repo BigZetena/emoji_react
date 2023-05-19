@@ -1,10 +1,13 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 export default function usePagination(currentData, cardsPerPage) {
     const [currentPage, setCurrentPage] = useState(1);
     const lastCardIndex = currentPage * cardsPerPage;
     const firstCardIndex = lastCardIndex - cardsPerPage;
     const currentCard = currentData.slice(firstCardIndex, lastCardIndex);
+    useEffect(() => {
+        switchPage(1)
+    }, [currentData])
 
     const switchPage = (pageNumber) => {
         setCurrentPage(pageNumber)
