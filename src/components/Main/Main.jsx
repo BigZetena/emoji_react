@@ -1,7 +1,8 @@
 import React from "react";
 import "./main.css";
 
-export const Main = ({loading, currentCard, }) => {
+export const Main = ({loading, currentCard}) => {
+
 
   if (loading) {
       return <h2 className="main__loading">Loading...</h2>

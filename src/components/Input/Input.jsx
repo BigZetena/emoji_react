@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, from "react";
 import "./input.css";
 
-export const Input = ({ value, inputHandler }) => {
+export const Input = ({searchResult}) => {
+
   return (
     <input
-      value={value}
-      onChange={(evt) => inputHandler(evt)}
+        {...searchResult}
       type="text"
       className="input"
       placeholder="Input KeyWords"

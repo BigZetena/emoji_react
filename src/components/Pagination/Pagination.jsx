@@ -1,126 +1,48 @@
-import React, {useEffect} from 'react';
+import React,from 'react';
 import "./pagination.css"
 import PaginationCardsPerPage from "../PaginationCardsPerPage/PaginationCardsPerPage";
+import clsx from "clsx";
 
 
 
-const Pagination = ({cardsPerPage, totalCards, switchPage, currentPage,  listHandler}) => {
-    const pageNumbers = []
-
-
-
-
-   console.log(currentPage)
-
-    for (let i=1; i <= Math.ceil(totalCards / cardsPerPage); i++) {
-        pageNumbers.push(i)
-    }
+const Pagination = ({paginationData,  pagePerPageList}) => {
+    const {pageNumbers, switchPage, currentPage, lastPage} = paginationData;
 
     if(pageNumbers.length <= 1) {
         return (
-            <h1>one page</h1>
+            <p className="pagination__button_disable">one page</p>
         )
     }
 
 
-    const changeButtonActive = (id) => {
-        const ulPagination = document.querySelector(".pagination")
-        const buttonsPagination = ulPagination.querySelectorAll("a")
-        for (let i = 0; i < buttonsPagination.length; i++) {
-            buttonsPagination[i].classList.remove("pagination__item__active");
-        }
-        const currentButton = document.getElementById(`${id}`);
-        currentButton.classList.add("pagination__item__active")
-    };
-
-    if(pageNumbers.length <= 6) {
     return (
         <div className="pagination__wrapper">
             <ul className="pagination">
-                <li className="pagination__item">
-                    <a href="#cards" className="pagination__link" onClick={() =>  {switchPage(1); changeButtonActive(1)}}>
+                <li className="pagination__button">
+                    <a  href="#cards" className = {clsx("pagination__button_text", {"pagination__button_disable": 1 === currentPage})} onClick={() =>  {switchPage(1)}}>
                         First
                     </a>
                 </li>
                 {
                  pageNumbers.map(number => (
                      <li className="pagination__item" key={number}>
-                         <a href="#cards" className = {"pagination__link"} id={number} onClick={() => {switchPage(number); changeButtonActive(number)}}>
+                         <a href="#cards" className = {clsx("pagination__link", {"pagination__item_active": number === currentPage})} id={number} onClick={() => {switchPage(number)}}>
                              {number}
                          </a>
                      </li>))
                 }
-                <li className="pagination__item">
-                    <a href="#cards"  className="pagination__link" onClick={() => {switchPage(pageNumbers.length); changeButtonActive(pageNumbers.length)}}>
+                <li className={clsx( "pagination__button", {"pagination__button_hover":lastPage !== currentPage})}>
+                    <a href="#cards"  className = {clsx("pagination__button_text", {"pagination__button_disable": lastPage === currentPage})} onClick={() => {switchPage(lastPage)}}>
                         Last
                     </a>
                 </li>
             </ul>
-            <PaginationCardsPerPage listHandler={listHandler}/>
+            <PaginationCardsPerPage pagePerPageList={pagePerPageList}/>
         </div>
-    );}
+    );
 
 
-    let splitPageNumberFirst = [];
-    let firstPageHandler = 1;
-    if (currentPage === 2) firstPageHandler = 2;
-    if (currentPage > 2) firstPageHandler = 3;
-    let countsFirstPage = 5;
-    let countsLastPage = 3;
-    if ((pageNumbers.length - currentPage) < 5) {
-        countsFirstPage = 2;
-        countsLastPage = 6;
-    }
 
-    for (let i = 0; i<countsFirstPage; i++ ) {
-        splitPageNumberFirst.push(pageNumbers[currentPage-firstPageHandler]);
-        currentPage++;
-    }
-
-
-    const splitPageNumberLast = [];
-    for (let i = 1; i<countsLastPage; i++ ) {
-        splitPageNumberLast.unshift(pageNumbers[pageNumbers.length-i]);
-    }
-
-    return (
-        <div className="pagination__wrapper">
-            <ul className="pagination">
-                <li className="pagination__item">
-                    <a href="#cards" className="pagination__link" onClick={() =>  {switchPage(1); }}>
-                        First
-                    </a>
-                </li>
-                {
-                    splitPageNumberFirst.map(number => (
-                        <li className="pagination__item" key={number}>
-                            <a href="#cards" className = {"pagination__link"} id={number} onClick={() => {switchPage(number); changeButtonActive(number)}}>
-                                {number}
-                            </a>
-                        </li>))
-                }
-                <li className="pagination__item" key= "threePoints">
-                    <a href="#cards"  className="pagination__link">
-                        ...
-                    </a>
-                </li>
-                {
-                    splitPageNumberLast.map(number => (
-                        <li className="pagination__item" key={number}>
-                            <a href="#cards" className = {"pagination__link"} id={number} onClick={() => {switchPage(number); changeButtonActive(number)}}>
-                                {number}
-                            </a>
-                        </li>))
-                }
-                <li className="pagination__item" key = "lastLastButton" >
-                    <a href="#cards"  className="pagination__link" onClick={() => {switchPage(pageNumbers.length); changeButtonActive(pageNumbers.length)}}>
-                        Last
-                    </a>
-                </li>
-            </ul>
-            <PaginationCardsPerPage listHandler={listHandler}/>
-        </div>
-    )
 
 
 };

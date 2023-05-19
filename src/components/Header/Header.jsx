@@ -2,7 +2,7 @@ import React from "react";
 import "./header.css";
 import { Input } from "../Input/Input";
 
-export const Header = ({ value, inputHandler }) => {
+export const Header = ({ searchResult }) => {
   return (
     <header>
       <div>
@@ -14,7 +14,7 @@ export const Header = ({ value, inputHandler }) => {
                 <h2 className="subtitle">Find emoji by keywords</h2>
               </a>
             </div>
-            <Input value={value} inputHandler={inputHandler} />
+            <Input searchResult={searchResult}/>
           </div>
         </div>
       </div>
